@@ -1,2 +1,2 @@
-# Common-Service
-This is a common service for ERP system
+# ERP-System
+This is a ERP system for educational domain.
