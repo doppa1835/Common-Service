@@ -2,6 +2,9 @@ package com.erp.commonservice.pojo;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 
@@ -10,7 +13,6 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -32,36 +34,36 @@ public class User implements Serializable {
 	@Column(name="security_question")
 	private String securityQuestion;
 
-	//bi-directional many-to-one association to Address
+	
 	@OneToMany(mappedBy="user")
 	private List<Address> addresses;
 
-	//bi-directional many-to-one association to Complaint
+	
 	@OneToMany(mappedBy="user")
 	private List<Complaint> complaints;
 
-	//bi-directional many-to-one association to Feedback
+	
 	@OneToMany(mappedBy="user1")
 	private List<Feedback> feedbacks1;
 
-	//bi-directional many-to-one association to Feedback
+	
 	@OneToMany(mappedBy="user2")
 	private List<Feedback> feedbacks2;
 
-	//bi-directional many-to-one association to Notification
+	
 	@OneToMany(mappedBy="user")
 	private List<Notification> notifications;
 
-	//bi-directional many-to-one association to Qualification
+	
 	@OneToMany(mappedBy="user")
 	private List<Qualification> qualifications;
 
-	//bi-directional many-to-one association to SubjectTimetable
+	
 	@OneToMany(mappedBy="user")
 	private List<SubjectTimetable> subjectTimetables;
 
-	//bi-directional many-to-one association to Role
-	@ManyToOne(fetch=FetchType.LAZY)
+	
+	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.LAZY)
 	private Role role;
 
 	public User() {

@@ -2,6 +2,9 @@ package com.erp.commonservice.pojo;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -10,7 +13,7 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
+//@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,6 +29,7 @@ public class Role implements Serializable {
 	private String name;
 
 	//bi-directional many-to-one association to User
+	@JsonIgnore
 	@OneToMany(mappedBy="role")
 	private List<User> users;
 
